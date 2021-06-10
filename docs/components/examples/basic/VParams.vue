@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-final-modal
+    <v-modal
       v-model="showModal"
       name="stackable"
       classes="modal-container"
@@ -9,7 +9,7 @@
       @closed="e => e.stop()"
     >
       <template v-slot="{ params }">
-        <button class="modal__close" @click="$vfm.hide('stackable')">
+        <button class="modal__close" @click="$modal.hide('stackable')">
           <mdi-close></mdi-close>
         </button>
         <span class="modal__title">{{ params.test }} Hello, vue-final-modal</span>
@@ -19,15 +19,15 @@
           </p>
         </div>
         <div class="modal__action">
-          <v-button @click="$vfm.hide('stackable')">confirm</v-button>
-          <v-button @click="$vfm.hide('stackable')">cancel</v-button>
+          <v-button @click="$modal.hide('stackable')">confirm</v-button>
+          <v-button @click="$modal.hide('stackable')">cancel</v-button>
         </div>
       </template>
-    </vue-final-modal>
-    <v-button @click="$vfm.show('stackable', { test: 123 })">Show modal with params</v-button>
-    <v-button @click="$vfm.toggle('stackable', null, { test: 321 })">Toggle modal with params</v-button>
-    <v-button @click="$vfm.show('stackable')">Show modal</v-button>
-    <v-button @click="$vfm.hide('stackable')">Hide modal</v-button>
+    </v-modal>
+    <v-button @click="$modal.show('stackable', { test: 123 })">Show modal with params</v-button>
+    <v-button @click="$modal.toggle('stackable', null, { test: 321 })">Toggle modal with params</v-button>
+    <v-button @click="$modal.show('stackable')">Show modal</v-button>
+    <v-button @click="$modal.hide('stackable')">Hide modal</v-button>
   </div>
 </template>
 

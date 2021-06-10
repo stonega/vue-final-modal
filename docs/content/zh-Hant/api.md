@@ -5,13 +5,14 @@ category: API
 position: 7
 version: 2
 ---
+
 ## Usage
 
-<alert>`$vfm` 是一個存放 VueFinalModal 資料與方法的物件</alert>
+<alert>`$modal` 是一個存放 VueFinalModal 資料與方法的物件</alert>
 
 ### **Options API**
 
-在組件內使用 `this.$vfm`.
+在組件內使用 `this.$modal`.
 
 ### **Composition API** <badge>Vue 3 only</badge>
 
@@ -20,7 +21,7 @@ import { inject } from 'vue'
 
 export default {
   setup() {
-    const $vfm = inject('$vfm')
+    const $modal = inject('$modal')
   }
 }
 ```
@@ -41,12 +42,12 @@ export default {
 
   ```html
   <template>
-    <vue-final-modal v-model="show" name="example">
-      <template v-slot:title>$vfm.show</template>
+    <v-modal v-model="show" name="example">
+      <template v-slot:title>$modal.show</template>
       <template v-slot="{ params }">
         Hi {{ params.userName }}
       </template>
-    </vue-final-modal>
+    </v-modal>
   </template>
   <script>
     export default {
@@ -58,7 +59,7 @@ export default {
   ```
 
   ```js
-  this.$vfm.show('example', { userName: 'vue-final-modal' })
+  this.$modal.show('example', { userName: 'vue-final-modal' })
     .then(() => {
       // do something on modal opened
     })
@@ -66,7 +67,7 @@ export default {
 
   </sfc-view>
 
-  <alert>如果要使用 `$vfm.show(name)` 打開 modal，`v-model` 是必須給的。</alert>
+  <alert>如果要使用 `$modal.show(name)` 打開 modal，`v-model` 是必須給的。</alert>
 
 ### `hide([names])`
 
@@ -80,8 +81,8 @@ export default {
 
   ```vue
   <template>
-    <vue-final-modal v-model="show" name="example">Vue Final Modal is awesome</vue-final-modal>
-    <vue-final-modal v-model="show2" name="example2">Vue Final Modal is awesome 2</vue-final-modal>
+    <v-modal v-model="show" name="example">Vue Final Modal is awesome</v-modal>
+    <v-modal v-model="show2" name="example2">Vue Final Modal is awesome 2</v-modal>
   </template>
   ```
 
@@ -93,7 +94,7 @@ export default {
         show2: true
       }),
       mounted() {
-        this.$vfm.hide('example', 'example2').then(() => {
+        this.$modal.hide('example', 'example2').then(() => {
           // do something on modal closed
         })
       }
@@ -109,7 +110,7 @@ export default {
 - 範例：
 
   ```js
-  this.$vfm.hideAll().then(() => {
+  this.$modal.hideAll().then(() => {
     // 當所有 modal 關閉後，做一些事
   })
   ```
@@ -117,7 +118,7 @@ export default {
 關閉所有的 modal。
 
 ```js
-this.$vfm.hideAll().then(() => {
+this.$modal.hideAll().then(() => {
   // 當所有 modal 關閉後，做一些事
 })
 ```
@@ -133,7 +134,7 @@ this.$vfm.hideAll().then(() => {
 - 範例：
 
   ```js
-  this.$vfm.toggle('myModal').then(() => {
+  this.$modal.toggle('myModal').then(() => {
     // 當多個 modal 被開啟或被關閉時，做一些事，開啟或關閉取決於 show 參數給的是 true 或 false
   })
   ```
@@ -141,7 +142,7 @@ this.$vfm.hideAll().then(() => {
 根據名字（name）切換 modals 的狀態。
 
 ```js
-this.$vfm.toggle('myModal').then(() => {
+this.$modal.toggle('myModal').then(() => {
   // 當多個 modal 被開啟或被關閉時，做一些事，開啟或關閉取決於 show 參數給的是 true 或 false
 })
 ```
@@ -156,7 +157,7 @@ this.$vfm.toggle('myModal').then(() => {
 - 範例：
 
   ```js
-  const modals = this.$vfm.get('modalName1', 'modalName2', ...)
+  const modals = this.$modal.get('modalName1', 'modalName2', ...)
   ```
 
 ### `openedModals`
@@ -166,15 +167,15 @@ this.$vfm.toggle('myModal').then(() => {
 - 範例：
   - 取得第一個打開的 modal 實例
     ```js
-      this.$vfm.modals[0]
+      this.$modal.modals[0]
     ```
   - 取得現在打開的 modal 總數
     ```js
-      this.$vfm.modals.length
+      this.$modal.modals.length
     ```
 
-1. `$vfm.openedModals[0]`: 取得第一個打開的 modal 實例。
-2. `$vfm.openedModals.length`: 取得現在打開的 modal 總數。
+1. `$modal.openedModals[0]`: 取得第一個打開的 modal 實例。
+2. `$modal.openedModals.length`: 取得現在打開的 modal 總數。
 
 ### `modals`
 
@@ -183,9 +184,9 @@ this.$vfm.toggle('myModal').then(() => {
 - 範例：
   - 取得第一個創建的 modal 實例
     ```js
-      this.$vfm.modals[0]
+      this.$modal.modals[0]
     ```
   - 取得現在創建的 modal 總數
     ```js
-      this.$vfm.modals.length
+      this.$modal.modals.length
     ```

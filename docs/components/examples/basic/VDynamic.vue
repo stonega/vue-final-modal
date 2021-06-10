@@ -6,7 +6,7 @@
 export default {
   methods: {
     dynamic() {
-      this.$vfm.show({
+      this.$modal.show({
         component: 'VDynamicModal'
       })
     }

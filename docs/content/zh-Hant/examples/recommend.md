@@ -14,13 +14,13 @@ version: 2
 
 </alert>
 
-### VModal.vue
+### CustomModal.vue
 
 <sfc-view>
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     v-slot="{ params, close }"
     v-bind="$attrs"
     classes="modal-container"
@@ -40,13 +40,13 @@ version: 2
     <button class="modal__close" @click="close">
       <mdi-close></mdi-close>
     </button>
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 ```vue
 <script>
 export default {
-  name: 'VModal',
+  name: 'CustomModal',
   inheritAttrs: false
 }
 </script>
@@ -103,7 +103,7 @@ export default {
 
 </sfc-view>
 
-## 如何使用 VModal
+## 如何使用 CustomModal
 
 ### 範例
 
@@ -114,10 +114,10 @@ export default {
 ```vue
 <template>
   <div>
-    <v-modal v-model="show" @confirm="confirm" @cancel="cancel">
+    <custom-modal v-model="show" @confirm="confirm" @cancel="cancel">
       <template v-slot:title>Hello, vue-final-modal</template>
       <p>Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.</p>
-    </v-modal>
+    </custom-modal>
 
     <v-button @click="show = true">Open modal</v-button>
   </div>

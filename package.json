@@ -74,6 +74,7 @@
     "nuxt",
     "modal",
     "dialog",
+    "v-modal",
     "vue-final-modal",
     "vue-modal",
     "vue-dialog",

@@ -1,5 +1,5 @@
 <template>
-  <vue-final-modal
+  <v-modal
     v-slot="{ params, close }"
     v-bind="$attrs"
     classes="flex justify-center items-center"
@@ -19,7 +19,7 @@
     <button class="absolute top-0 right-0 mt-2 mr-2" @click="close">
       <mdi-close></mdi-close>
     </button>
-  </vue-final-modal>
+  </v-modal>
 </template>
 
 <script>

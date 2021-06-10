@@ -5,13 +5,14 @@ category: API
 position: 7
 version: 2
 ---
+
 ## Usage
 
-<alert>`$vfm` is an object containing VueFinalModal's data/methods.</alert>
+<alert>`$modal` is an object containing VModal's data/methods.</alert>
 
 ### **Options API**
 
-Just use `this.$vfm`.
+Just use `this.$modal`.
 
 ### **Composition API** <badge>Vue 3 only</badge>
 
@@ -20,7 +21,7 @@ import { inject } from 'vue'
 
 export default {
   setup() {
-    const $vfm = inject('$vfm')
+    const $modal = inject('$modal')
   }
 }
 ```
@@ -41,12 +42,12 @@ export default {
 
   ```html
   <template>
-    <vue-final-modal v-model="show" name="example">
-      <template v-slot:title>$vfm.show</template>
+    <v-modal v-model="show" name="example">
+      <template v-slot:title>$modal.show</template>
       <template v-slot="{ params }">
         Hi {{ params.userName }}
       </template>
-    </vue-final-modal>
+    </v-modal>
   </template>
   <script>
     export default {
@@ -58,7 +59,7 @@ export default {
   ```
 
   ```js
-  this.$vfm.show('example', { userName: 'vue-final-modal' })
+  this.$modal.show('example', { userName: 'vue-final-modal' })
     .then(() => {
       // do something on modal opened
     })
@@ -66,7 +67,7 @@ export default {
 
   </sfc-view>
 
-  <alert>`v-model` is necessary when you open a modal with `$vfm.show(name)` API.</alert>
+  <alert>`v-model` is necessary when you open a modal with `$modal.show(name)` API.</alert>
 
 ### `hide([names])`
 
@@ -80,8 +81,8 @@ export default {
 
   ```vue
   <template>
-    <vue-final-modal v-model="show" name="example">Vue Final Modal is awesome</vue-final-modal>
-    <vue-final-modal v-model="show2" name="example2">Vue Final Modal is awesome 2</vue-final-modal>
+    <v-modal v-model="show" name="example">Vue Final Modal is awesome</v-modal>
+    <v-modal v-model="show2" name="example2">Vue Final Modal is awesome 2</v-modal>
   </template>
   ```
 
@@ -93,7 +94,7 @@ export default {
         show2: true
       }),
       mounted() {
-        this.$vfm.hide('example', 'example2').then(() => {
+        this.$modal.hide('example', 'example2').then(() => {
           // do something on modal closed
         })
       }
@@ -109,7 +110,7 @@ export default {
 - Example:
 
   ```js
-  this.$vfm.hideAll().then(() => {
+  this.$modal.hideAll().then(() => {
     // do something on all modals closed
   })
   ```
@@ -117,7 +118,7 @@ export default {
 Hide all modals.
 
 ```js
-this.$vfm.hideAll().then(() => {
+this.$modal.hideAll().then(() => {
   // do something on all modals closed
 })
 ```
@@ -133,7 +134,7 @@ this.$vfm.hideAll().then(() => {
 - Example:
 
   ```js
-  this.$vfm.toggle('myModal').then(() => {
+  this.$modal.toggle('myModal').then(() => {
     // do something on modals opened or closed, it depends on params `show` is true or false
   })
   ```
@@ -141,7 +142,7 @@ this.$vfm.hideAll().then(() => {
 Toggle modals by name.
 
 ```js
-this.$vfm.toggle('myModal').then(() => {
+this.$modal.toggle('myModal').then(() => {
   // do something on modals opened or closed, it depends on params `show` is true or false
 })
 ```
@@ -158,7 +159,7 @@ Get the modal instances by modal names.
 - Example:
 
   ```js
-  const modals = this.$vfm.get('modalName1', 'modalName2', ...)
+  const modals = this.$modal.get('modalName1', 'modalName2', ...)
   ```
 
 ### `openedModals`
@@ -168,11 +169,11 @@ Get the modal instances by modal names.
 - Examples:
   - get the first opened modal instance
     ```js
-      this.$vfm.openedModals[0]
+      this.$modal.openedModals[0]
     ```
   - get how many modals was opened
     ```js
-      this.$vfm.openedModals.length
+      this.$modal.openedModals.length
     ```
 
 ### `modals`
@@ -182,9 +183,9 @@ Get the modal instances by modal names.
 - Examples:
   - get the first created modal instance
     ```js
-      this.$vfm.modals[0]
+      this.$modal.modals[0]
     ```
   - get how many modals was created
     ```js
-      this.$vfm.modals.length
+      this.$modal.modals.length
     ```

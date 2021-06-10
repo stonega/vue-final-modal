@@ -7,30 +7,30 @@ version: 2
 badge: v2.0.0+
 ---
 
-Vue Final Modal has a helper function to dynamically show a modal. This means that you don't have to add the modal to your Vue template and you don't have to use `v-model` to hide or show the modal. You can simply execute `$vfm.show` and pass a modal component as per the example below:
+Vue Final Modal has a helper function to dynamically show a modal. This means that you don't have to add the modal to your Vue template and you don't have to use `v-model` to hide or show the modal. You can simply execute `$modal.show` and pass a modal component as per the example below:
 
 ```js
-this.$vfm.show({ component: 'MyDynamicModal' })
+this.$modal.show({ component: 'MyDynamicModal' })
 ```
 
 The component `MyDynamicModal` is hypothetical, check the [Examples](#examples) below for an accurate example.
 
 ## Prerequisite
 
-As a requirement to using Dynamic modals you must add `<ModalsContainer />` to your main `App.vue` file like so:
+As a requirement to using Dynamic modals you must add `<VDynamicModals />` to your main `App.vue` file like so:
 
 ```html[App.vue]
 <div>
   ...
-  <modals-container></modals-container>
+  <v-dynamic-modals></v-dynamic-modals>
 </div>
 ```
 
-`ModalsContainer` is an invisible Vue component that is responsible for hosting the Vue instances of your dynamic modals. You don't need to do add anything else to the `ModalsContainer`, as long as you include it in your Vue tree, you can use Dynamic modals.
+`VDynamicModals` is an invisible Vue component that is responsible for hosting the Vue instances of your dynamic modals. You don't need to do add anything else to the `VDynamicModals`, as long as you include it in your Vue tree, you can use Dynamic modals.
 
 ## API
 
-### `$vfm.show(dynamicModalOptions, params)`
+### `$modal.show(dynamicModalOptions, params)`
 
 - Type: `Function`,
 - Arguments:
@@ -51,28 +51,28 @@ As a requirement to using Dynamic modals you must add `<ModalsContainer />` to y
       }
     }
     ```
-  - params: same as [API $vfm.show](/api#showname-params)
+  - params: same as [API $modal.show](/api#showname-params)
 - Returns: `Promise<Object>` | `Promise<Array>`
 
-To show dynamic modal you can use the API `$vfm.show` function.
+To show dynamic modal you can use the API `$modal.show` function.
 
-### `$vfm.dynamicModals`
+### `$modal.dynamicModals`
 
 - Return: 
   - `Array`: returns dynamic modal instances.
 - Examples:
   - get the first created dynamic modal instance
     ```js
-      this.$vfm.dynamicModals[0]
+      this.$modal.dynamicModals[0]
     ```
   - get how many dynamic modals was created
     ```js
-      this.$vfm.dynamicModals.length
+      this.$modal.dynamicModals.length
     ```
 
 ## Examples
 
-<modals-container></modals-container>
+<v-dynamic-modals></v-dynamic-modals>
 
 ### Basic
 
@@ -91,7 +91,7 @@ To show dynamic modal you can use the API `$vfm.show` function.
 export default {
   methods: {
     dynamic() {
-      this.$vfm.show({
+      this.$modal.show({
         component: 'VDynamicModal'
       })
     }
@@ -102,13 +102,24 @@ export default {
 
 </sfc-view>
 
+#### Register `v-dynamic-modals` in `App.vue` for modal container.
+
+```vue[App.vue]
+<template>
+  <div>
+    ...
+    <v-dynamic-modals></v-dynamic-modals>
+  </div>
+</template>
+```
+
 #### VDynamicModal.vue
 
 <sfc-view>
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     v-slot="{ close }"
     v-bind="$attrs"
     classes="modal-container"
@@ -122,7 +133,7 @@ export default {
     <div class="modal__content">
       <p>Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.</p>
     </div>
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 ```vue
@@ -189,13 +200,13 @@ import VContent from '../VContent.vue'
 export default {
   methods: {
     dynamic() {
-      this.$vfm.show({
-        component: 'VModal',
+      this.$modal.show({
+        component: 'CustomModal',
         bind: {
           name: 'VDynamicAdvacedModal'
         },
         on: {
-          // event by v-modal
+          // event by custom-modal
           confirm(close) {
             console.log('confirm')
             close()
@@ -245,9 +256,20 @@ export default {
 
 </sfc-view>
 
-#### VModal.vue
+#### Register `v-dynamic-modals` in `App.vue` for modal container.
 
-<alert>VModal is an HOC of vue-final-modal.</alert>
+```vue[App.vue]
+<template>
+  <div>
+    ...
+    <v-dynamic-modals></v-dynamic-modals>
+  </div>
+</template>
+```
+
+#### CustomModal.vue
+
+<alert>Write an HOC called `CustomModal` base on `VModal` in vue-final-modal.</alert>
 
 > [See recommend usage](/examples/recommend)
 
@@ -255,7 +277,7 @@ export default {
 
 ```vue
 <template>
-  <vue-final-modal v-bind="$attrs" classes="modal-container" content-class="modal-content" v-on="$listeners">
+  <v-modal v-bind="$attrs" classes="modal-container" content-class="modal-content" v-on="$listeners">
     <template v-slot="{ params }">
       <span class="modal__title">
         <slot name="title"></slot>
@@ -271,13 +293,13 @@ export default {
         <mdi-close></mdi-close>
       </button>
     </template>
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 ```vue
 <script>
 export default {
-  name: 'VModal',
+  name: 'CustomModal',
   inheritAttrs: false,
   methods: {
     close() {

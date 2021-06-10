@@ -9,14 +9,14 @@ badge: v2.0.0+
 
 這個功能讓你可以動態的建立 modal。
 
-## 新增 `ModalsContainer`
+## 新增 `VDynamicModals`
 
-所有的動態 modals 都會被崁入、顯示在 `ModalsContainer` 元件中。你可以透過 [$vfm.dynamicModals](#dynamicmodals) 屬性取得所有的動態 modal 實例 
+所有的動態 modals 都會被崁入、顯示在 `VDynamicModals` 元件中。你可以透過 [$modal.dynamicModals](#dynamicmodals) 屬性取得所有的動態 modal 實例 
 
 ```html[App.vue]
 <div>
   ...
-  <modals-container></modals-container>
+  <v-dynamic-modals></v-dynamic-modals>
 </div>
 ```
 
@@ -43,10 +43,10 @@ badge: v2.0.0+
       }
     }
     ```
-  - params: 與 [API $vfm.show](/zh-Hant/api#showname-params) 相同
+  - params: 與 [API $modal.show](/zh-Hant/api#showname-params) 相同
 - 回傳： `Promise<Object>` | `Promise<Array>`
 
-你可以透過 `$vfm.show` 這個方法開啟動態 modal。
+你可以透過 `$modal.show` 這個方法開啟動態 modal。
 
 ### `dynamicModals`
 
@@ -55,16 +55,16 @@ badge: v2.0.0+
 - 範例：
   - 取得第一個創建的動態 modal 實例
     ```js
-      this.$vfm.dynamicModals[0]
+      this.$modal.dynamicModals[0]
     ```
   - 取得現在創建的動態 modal 總數
     ```js
-      this.$vfm.dynamicModals.length
+      this.$modal.dynamicModals.length
     ```
 
 ## 範例
 
-<modals-container></modals-container>
+<v-dynamic-modals></v-dynamic-modals>
 
 ### 基本
 
@@ -83,7 +83,7 @@ badge: v2.0.0+
 export default {
   methods: {
     dynamic() {
-      this.$vfm.show({
+      this.$modal.show({
         component: 'VDynamicModal'
       })
     }
@@ -100,7 +100,7 @@ export default {
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     v-slot="{ close }"
     v-bind="$attrs"
     classes="modal-container"
@@ -114,7 +114,7 @@ export default {
     <div class="modal__content">
       <p>Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.</p>
     </div>
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 ```vue
@@ -181,13 +181,13 @@ import VContent from '../VContent.vue'
 export default {
   methods: {
     dynamic() {
-      this.$vfm.show({
-        component: 'VModal',
+      this.$modal.show({
+        component: 'CustomModal',
         bind: {
           name: 'VDynamicAdvacedModal'
         },
         on: {
-          // event by v-modal
+          // event by custom-modal
           confirm(close) {
             console.log('confirm')
             close()
@@ -237,9 +237,9 @@ export default {
 
 </sfc-view>
 
-#### VModal.vue
+#### CustomModal.vue
 
-<alert>VModal 是一個 vue-final-modal 的高階元件（HOC）。</alert>
+<alert>基於 vue-final-modal 中的 `VModal` 寫一個叫做 `CustomModal` 的高階元件（HOC）</alert>
 
 [Source code](/zh-Hant/examples/recommend)
 
@@ -247,7 +247,7 @@ export default {
 
 ```vue
 <template>
-  <vue-final-modal v-bind="$attrs" classes="modal-container" content-class="modal-content" v-on="$listeners">
+  <v-modal v-bind="$attrs" classes="modal-container" content-class="modal-content" v-on="$listeners">
     <template v-slot="{ params }">
       <span class="modal__title">
         <slot name="title"></slot>
@@ -263,13 +263,13 @@ export default {
         <mdi-close></mdi-close>
       </button>
     </template>
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 ```vue
 <script>
 export default {
-  name: 'VModal',
+  name: 'CustomModal',
   inheritAttrs: false,
   methods: {
     close() {

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <vue-final-modal v-model="showModal" content-class="modal-content">
+    <v-modal v-model="showModal" content-class="modal-content">
       <span class="modal__title">Hello, vue-final-modal</span>
-    </vue-final-modal>
+    </v-modal>
     <v-button highlight @click="showModal = true">Open modal</v-button>
   </div>
 </template>

@@ -1,11 +1,5 @@
 <template>
-  <vue-final-modal
-    v-slot="{ close }"
-    v-bind="$attrs"
-    classes="modal-container"
-    content-class="modal-content"
-    v-on="$listeners"
-  >
+  <v-modal v-slot="{ close }" v-bind="$attrs" classes="modal-container" content-class="modal-content" v-on="$listeners">
     <button class="modal__close" @click="close">
       <mdi-close></mdi-close>
     </button>
@@ -13,7 +7,7 @@
     <div class="modal__content">
       <p>Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.</p>
     </div>
-  </vue-final-modal>
+  </v-modal>
 </template>
 
 <script>

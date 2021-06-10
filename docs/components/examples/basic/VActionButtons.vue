@@ -1,6 +1,6 @@
 <template>
   <div>
-    <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+    <v-modal v-model="showModal" classes="modal-container" content-class="modal-content">
       <button class="modal__close" @click="showModal = false">
         <mdi-close></mdi-close>
       </button>
@@ -14,7 +14,7 @@
         <v-button @click="showModal = false">confirm</v-button>
         <v-button @click="showModal = false">cancel</v-button>
       </div>
-    </vue-final-modal>
+    </v-modal>
     <v-button highlight @click="showModal = true">Open modal</v-button>
   </div>
 </template>

@@ -8,52 +8,98 @@ version: 2
 
 ## Installation
 
-**@next: <badge>1.x.x</badge>, <badge>3.x.x</badge> for Vue 3**
+### **Vue 3**
 
 <code-group>
-  <code-block label="Yarn" active>
-
-```bash
-yarn add vue-final-modal@next
-```
-
-  </code-block>
-  <code-block label="NPM">
+  <code-block label="npm" active>
 
 ```bash
 npm install vue-final-modal@next
 ```
 
   </code-block>
-</code-group>
-
-**@latest: <badge>0.x.x</badge>, <badge>2.x.x</badge> for Vue 2**
-
-<code-group>
-  <code-block label="Yarn" active>
+  <code-block label="yarn">
 
 ```bash
-yarn add vue-final-modal@latest
+yarn add vue-final-modal@next
 ```
 
   </code-block>
-  <code-block label="NPM">
+  <code-block label="pnpm">
+
+```bash
+pnpm add vue-final-modal@next
+```
+
+  </code-block>
+</code-group>
+
+### **Vue 2**
+
+<code-group>
+  <code-block label="npm" active>
 
 ```bash
 npm install vue-final-modal@latest
 ```
 
   </code-block>
+  <code-block label="yarn">
+
+```bash
+yarn add vue-final-modal@latest
+```
+
+  </code-block>
+  <code-block label="pnpm">
+
+```bash
+yarn add vue-final-modal@latest
+```
+
+  </code-block>
 </code-group>
 
-## Registeration
+## Import base on your needs
 
-### Vue
+Checkout how to use [$modal](/api), [VModal](/examples/liveDemo), [VDynamicModals](/dynamic-modal).
+
+```vue
+<script>
+import { $modal, VModal, VDynamicModals } from 'vue-final-modal'
+
+export default {
+  components: {
+    VModal,
+    VDynamicModals
+  }
+}
+</script>
+```
+
+## Global Register plugin
+
+### `vfmPlugin`
+
+- Type: `Function | PluginObject`
+- Arguments: `Object`
+  - default;
+  ```js
+  {
+    key: '$modal',
+    name: 'VModal',
+    containerName: 'VDynamicModals'
+  }
+  ```
+- Returns: `PluginObject`
+- Examples:
+
+### Vue 2
 
 ```js[main.js]
-import VueFinalModal from 'vue-final-modal'
+import { vfmPlugin } from 'vue-final-modal'
 
-Vue.use(VueFinalModal())
+Vue.use(vfmPlugin)
 ```
 
 ### Nuxt
@@ -61,9 +107,9 @@ Vue.use(VueFinalModal())
 - **Write a plugin `vue-final-modal.js`**
 
 ```js[plugins/vue-final-modal.js]
-import VueFinalModal from 'vue-final-modal/lib'
+import { vfmPlugin } from 'vue-final-modal/lib'
 
-Vue.use(VueFinalModal())
+Vue.use(vfmPlugin)
 ```
 
 - **Add plugin into `nuxt.config.js`**
@@ -77,7 +123,19 @@ export default {
 }
 ```
 
-### CDN
+### Overwrite `key`, `name`, `containerName`
+
+```js[main.js]
+import { vfmPlugin } from 'vue-final-modal'
+
+Vue.use(vfmPlugin({
+  key: '$modal',
+  name: 'VModal',
+  containerName: 'VDynamicModals'
+}))
+```
+
+## CDN
 
 <alert>[Live demo](https://codepen.io/hunterliu1003/pen/ZEWoYeE)</alert>
 

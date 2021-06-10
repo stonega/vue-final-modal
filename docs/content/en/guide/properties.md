@@ -10,7 +10,7 @@ version: 2
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     :name="null"
     :value="false"
     :ssr="true"
@@ -45,7 +45,7 @@ version: 2
     :max-height="Infinity"
   >
     ...modal content
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 
@@ -54,9 +54,9 @@ version: 2
 - Type: `String`
 - Default: `null`
 
-Modal name for the [API](/api) `$vfm.show(name)`, `$vfm.hide(name)`, etc.
+Modal name for the [API](/api) `$modal.show(name)`, `$modal.hide(name)`, etc.
 
-<alert>`v-model` is necessary when you open a modal with `$vfm.show(name)`.</alert>
+<alert>`v-model` is necessary when you open a modal with `$modal.show(name)`.</alert>
 
 ## `ssr`
 
@@ -133,7 +133,7 @@ CSS transition applied to the modal container.
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     :transition="{
       'enter-active-class': 'transition duration-200 ease-in-out transform',
       'enter-class': 'translate-y-full',
@@ -144,7 +144,7 @@ CSS transition applied to the modal container.
     }"
   >
     ...modal content
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 
@@ -176,7 +176,7 @@ CSS transition applied to the modal overlay.
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     :transition="{
       'enter-active-class': 'transition duration-200 ease-in-out transform',
       'enter-class': 'translate-y-full',
@@ -187,7 +187,7 @@ CSS transition applied to the modal overlay.
     }"
   >
     ...modal content
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 
@@ -298,7 +298,7 @@ Limit the x-axis, y-axis, width and height of the `.vfm__content` to not exceed 
 - Example:
 
   ```html
-  <vue-final-modal drag-selector=".modal-drag">
+  <v-modal drag-selector=".modal-drag">
     <div class="modal-title modal-drag">...</div>
     <div class="modal-content">...</div>
     <div class="modal-action">...</div>

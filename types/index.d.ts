@@ -1,7 +1,7 @@
 import Vue, { PluginObject, VNodeData, Component, AsyncComponent } from 'vue'
 import './lib'
 
-export class VueFinalModalComponant extends Vue {
+export class VModalComponent extends Vue {
   $refs: {
     vfmContainer: HTMLDivElement
   }
@@ -63,11 +63,11 @@ interface DynamicModalData extends DynamicModalOptions {
   params: any
 }
 
-export interface VueFinalModalProperty {
+export interface $ModalProperty {
   readonly dynamicModals: DynamicModalData[]
-  readonly openedModals: VueFinalModalComponant[]
-  readonly modals: VueFinalModalComponant[]
-  get(...names: string[]): VueFinalModalComponant[]
+  readonly openedModals: VModalComponent[]
+  readonly modals: VModalComponent[]
+  get(...names: string[]): VModalComponent[]
 
   show(name: string, params?: any): void
   show(modal: DynamicModalOptions, params?: any): void
@@ -81,14 +81,14 @@ export interface VueFinalModalProperty {
 
 declare module 'vue/types/vue' {
   interface Vue {
-    readonly $vfm: VueFinalModalProperty
+    readonly $modal: $ModalProperty
   }
 }
 
 export interface VfmOptions {
-  dynamicContainerName?: string
-  componentName?: string
   key?: string
+  name?: string
+  containerName?: string
 }
 
 declare const VfmPlugin: () => PluginObject<VfmOptions>

@@ -10,7 +10,7 @@ version: 2
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     :name="null"
     :value="false"
     :ssr="true"
@@ -45,7 +45,7 @@ version: 2
     :max-height="Infinity"
   >
     ...modal content
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 
@@ -54,9 +54,9 @@ version: 2
 - 型別： `String`
 - 預設： `null`
 
-這個 modal 的名字，用於使用 [API](/zh-Hant/api)  `$vfm.show(name)`、`$vfm.hide(name)` 等。
+這個 modal 的名字，用於使用 [API](/zh-Hant/api)  `$modal.show(name)`、`$modal.hide(name)` 等。
 
-<alert>如果要使用 `$vfm.show(name)` 打開 modal，`v-model` 是必須給的。</alert>
+<alert>如果要使用 `$modal.show(name)` 打開 modal，`v-model` 是必須給的。</alert>
 
 ## `ssr`
 
@@ -133,7 +133,7 @@ version: 2
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     :transition="{
       'enter-active-class': 'transition duration-200 ease-in-out transform',
       'enter-class': 'translate-y-full',
@@ -144,7 +144,7 @@ version: 2
     }"
   >
     ...modal content
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 
@@ -176,7 +176,7 @@ version: 2
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     :transition="{
       'enter-active-class': 'transition duration-200 ease-in-out transform',
       'enter-class': 'translate-y-full',
@@ -187,7 +187,7 @@ version: 2
     }"
   >
     ...modal content
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 
@@ -300,7 +300,7 @@ version: 2
 - 範例：
 
   ```html
-  <vue-final-modal drag-selector=".modal-drag">
+  <v-modal drag-selector=".modal-drag">
     <div class="modal-title modal-drag">...</div>
     <div class="modal-content">...</div>
     <div class="modal-action">...</div>

@@ -1,5 +1,5 @@
 <template>
-  <vue-final-modal
+  <v-modal
     v-slot="{ params, close }"
     v-bind="$attrs"
     classes="modal-container"
@@ -13,18 +13,18 @@
       <slot v-bind:params="params"></slot>
     </div>
     <div class="modal__action">
-      <v-button class="vfm-btn" @click="$emit('confirm', close)">confirm</v-button>
-      <v-button class="vfm-btn" @click="$emit('cancel', close)">cancel</v-button>
+      <v-button @click="$emit('confirm', close)">confirm</v-button>
+      <v-button @click="$emit('cancel', close)">cancel</v-button>
     </div>
     <button class="modal__close" @click="close">
       <mdi-close></mdi-close>
     </button>
-  </vue-final-modal>
+  </v-modal>
 </template>
 
 <script>
 export default {
-  name: 'VModal',
+  name: 'CustomModal',
   inheritAttrs: false
 }
 </script>

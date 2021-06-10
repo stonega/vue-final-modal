@@ -7,7 +7,7 @@ fullscreen: true
 version: 2
 ---
 
-當你透過 [API](/zh-Hant/api) `$vfm.show(name, params)` 開啟 modal。
+當你透過 [API](/zh-Hant/api) `$modal.show(name, params)` 開啟 modal。
 
 ## 你有兩個方法取得 `params`：
 
@@ -22,9 +22,9 @@ version: 2
 ### 在 `@beforeOpen` 事件
 
 ```html
-<vue-final-modal @beforeOpen="event => event.ref.params">
+<v-modal @beforeOpen="event => event.ref.params">
   <!-- modal content -->
-</vue-final-modal>
+</v-modal>
 ```
 
 <alert>在 [`closed`](/zh-Hant/guide/events#closed) 事件之後 `params` 會自動被重置為 `{}`。你可以透過調用 `event.stop()` 來避免 `params` 被重置</alert>

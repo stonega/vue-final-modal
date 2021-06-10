@@ -3,7 +3,7 @@ import { afterTransition, createClosedModal, createOpenedModal, initDynamicModal
 
 enableAutoDestroy(afterEach)
 
-describe('VueFinalModal.vue', () => {
+describe('VModal.vue', () => {
   describe('default props', () => {
     it('value', async () => {
       const { wrapper } = await createOpenedModal()
@@ -301,31 +301,31 @@ describe('VueFinalModal.vue', () => {
 
   describe('API', () => {
     it('show static modal', async () => {
-      const { wrapper, $vfm } = await createClosedModal({
+      const { wrapper, $modal } = await createClosedModal({
         name: 'testModal'
       })
-      await $vfm.show('testModal')
+      await $modal.show('testModal')
       expect(wrapper.find('.vfm').isVisible()).toBe(true)
     })
     it('show dynamic modal', async () => {
-      const { wrapper, $vfm } = await initDynamicModal()
+      const { wrapper, $modal } = await initDynamicModal()
       const dynamicOptions = {}
-      await $vfm.show(dynamicOptions)
+      await $modal.show(dynamicOptions)
       expect(wrapper.find('.vfm').exists()).toBe(true)
     })
     it('show dynamic modal with string slot', async () => {
-      const { wrapper, $vfm } = await initDynamicModal()
-      const string = 'testVueFinalModal'
+      const { wrapper, $modal } = await initDynamicModal()
+      const string = 'testVModal'
       const dynamicOptions = {
         slots: {
           default: string
         }
       }
-      await $vfm.show(dynamicOptions)
+      await $modal.show(dynamicOptions)
       expect(wrapper.find('.vfm').html()).toContain(string)
     })
     it('stop show dynamic modal', async () => {
-      const { wrapper, $vfm } = await initDynamicModal()
+      const { wrapper, $modal } = await initDynamicModal()
       const dynamicOptions = {
         on: {
           'before-open'(e) {
@@ -333,25 +333,25 @@ describe('VueFinalModal.vue', () => {
           }
         }
       }
-      await $vfm.show(dynamicOptions)
+      await $modal.show(dynamicOptions)
       expect(wrapper.find('.vfm').exists()).toBe(false)
     })
     it('hide modal', async () => {
-      const { wrapper, $vfm } = await createOpenedModal({
+      const { wrapper, $modal } = await createOpenedModal({
         name: 'testModal'
       })
-      await $vfm.hide('testModal')
+      await $modal.hide('testModal')
       expect(wrapper.find('.vfm').isVisible()).toBe(false)
     })
     it('hide modals', async () => {
-      const { wrapper, $vfm } = await initDynamicModal()
-      await $vfm.show({ bind: { name: 'modal1' } })
-      await $vfm.show({ bind: { name: 'modal2' } })
-      await $vfm.hide('modal1', 'modal2')
+      const { wrapper, $modal } = await initDynamicModal()
+      await $modal.show({ bind: { name: 'modal1' } })
+      await $modal.show({ bind: { name: 'modal2' } })
+      await $modal.hide('modal1', 'modal2')
       expect(wrapper.find('.vfm').exists()).toBe(false)
     })
     it('stop hide modal', async () => {
-      const { wrapper, $vfm } = await initDynamicModal()
+      const { wrapper, $modal } = await initDynamicModal()
       const dynamicOptions = {
         bind: {
           name: 'modal1'
@@ -362,42 +362,42 @@ describe('VueFinalModal.vue', () => {
           }
         }
       }
-      await $vfm.show(dynamicOptions)
-      await $vfm.hide('modal1')
+      await $modal.show(dynamicOptions)
+      await $modal.hide('modal1')
       expect(wrapper.find('.vfm').exists()).toBe(true)
     })
     it('hide all modals', async () => {
-      const { wrapper, $vfm } = await initDynamicModal()
-      await $vfm.show({ bind: { name: 'modal1' } })
-      await $vfm.show({ bind: { name: 'modal2' } })
-      await $vfm.hideAll()
+      const { wrapper, $modal } = await initDynamicModal()
+      await $modal.show({ bind: { name: 'modal1' } })
+      await $modal.show({ bind: { name: 'modal2' } })
+      await $modal.hideAll()
       expect(wrapper.find('.vfm').exists()).toBe(false)
     })
     it('toggle opened modal', async () => {
-      const { wrapper, $vfm } = await createOpenedModal({
+      const { wrapper, $modal } = await createOpenedModal({
         name: 'testModal'
       })
-      await $vfm.toggle('testModal', false)
+      await $modal.toggle('testModal', false)
       expect(wrapper.find('.vfm').isVisible()).toBe(false)
     })
     it('toggle closed modal', async () => {
-      const { wrapper, $vfm } = await createClosedModal({
+      const { wrapper, $modal } = await createClosedModal({
         name: 'testModal'
       })
-      await $vfm.toggle('testModal', true)
+      await $modal.toggle('testModal', true)
       expect(wrapper.find('.vfm').isVisible()).toBe(true)
     })
     it('toggle dynamic modal', async () => {
-      const { wrapper, $vfm } = await initDynamicModal()
-      await $vfm.show({ bind: { name: 'testModal' } })
-      await $vfm.toggle('testModal')
+      const { wrapper, $modal } = await initDynamicModal()
+      await $modal.show({ bind: { name: 'testModal' } })
+      await $modal.toggle('testModal')
       expect(wrapper.find('.vfm').exists()).toBe(false)
     })
     it('get modals', async () => {
-      const { $vfm } = await initDynamicModal()
-      await $vfm.show({ bind: { name: 'testModal1' } })
-      await $vfm.show({ bind: { name: 'testModal2' } })
-      expect($vfm.get('testModal1').length).toBe(1)
+      const { $modal } = await initDynamicModal()
+      await $modal.show({ bind: { name: 'testModal1' } })
+      await $modal.show({ bind: { name: 'testModal2' } })
+      expect($modal.get('testModal1').length).toBe(1)
     })
   })
 
@@ -467,7 +467,7 @@ describe('VueFinalModal.vue', () => {
     })
 
     it('avoid modal reset params after modal was closed', async () => {
-      const { wrapper, $vfm } = await createClosedModal(
+      const { wrapper, $modal } = await createClosedModal(
         {
           name: 'testModal'
         },
@@ -480,8 +480,8 @@ describe('VueFinalModal.vue', () => {
       const params = {
         test: 123
       }
-      await $vfm.show('testModal', params)
-      await $vfm.hide('testModal')
+      await $modal.show('testModal', params)
+      await $modal.hide('testModal')
       expect(wrapper.vm.params === params).toBe(true)
     })
   })

@@ -15,10 +15,10 @@ When you are using vue-final-modal as a HOC. you can `close` modal with scoped-s
 
 ```vue
 <template>
-  <vue-final-modal v-slot="{ close }" v-bind="$attrs" v-on="$listeners">
+  <v-modal v-slot="{ close }" v-bind="$attrs" v-on="$listeners">
     <div>Hello Vue Final Modal</div>
     <button @click="close">close modal</button>
-  </vue-final-modal>
+  </v-modal>
 </template>
 
 <script>
@@ -34,7 +34,7 @@ export default {
 - type: `Any`
 - default: `{}`
 
-When you open a modal though the [API](/api) `$vfm.show(name, params)`, you can get `params` with scoped-slot:
+When you open a modal though the [API](/api) `$modal.show(name, params)`, you can get `params` with scoped-slot:
 
 ```html
 <template v-slot="{ params }">

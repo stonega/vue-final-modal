@@ -8,52 +8,97 @@ version: 2
 
 ## 安裝
 
-**Vue 3 使用 <badge>1.x.x</badge>、<badge>3.x.x</badge>**
+### **Vue 3**
 
 <code-group>
-  <code-block label="Yarn" active>
-
-```bash
-yarn add vue-final-modal@next
-```
-
-  </code-block>
-  <code-block label="NPM">
+  <code-block label="npm" active>
 
 ```bash
 npm install vue-final-modal@next
 ```
 
   </code-block>
-</code-group>
-
-**Vue 2 使用 <badge>0.x.x</badge>、<badge>2.x.x</badge>**
-
-<code-group>
-  <code-block label="Yarn" active>
+  <code-block label="yarn">
 
 ```bash
-yarn add vue-final-modal@latest
+yarn add vue-final-modal@next
 ```
 
   </code-block>
-  <code-block label="NPM">
+  <code-block label="pnpm">
+
+```bash
+pnpm add vue-final-modal@next
+```
+
+  </code-block>
+</code-group>
+
+### **Vue 2**
+
+<code-group>
+  <code-block label="npm" active>
 
 ```bash
 npm install vue-final-modal@latest
 ```
 
   </code-block>
+  <code-block label="yarn">
+
+```bash
+yarn add vue-final-modal@latest
+```
+
+  </code-block>
+  <code-block label="pnpm">
+
+```bash
+pnpm add vue-final-modal@latest
+```
+
+  </code-block>
 </code-group>
 
-## 註冊
+## 按需求引入
 
-### Vue
+查看更多 [$modal](/api)、[VModal](/examples/liveDemo)、[VDynamicModals](/dynamic-modal) 的使用細節。
+
+```vue
+<script>
+import { $modal, VModal, VDynamicModals } from 'vue-final-modal'
+
+export default {
+  components: {
+    VModal,
+    VDynamicModals
+  }
+}
+</script>
+```
+
+## 全域註冊套件
+
+### `vfmPlugin`
+
+- 型別：`Function | PluginObject`
+- 參數：`Object`
+  - 預設：
+  ```js
+  {
+    key: '$modal',
+    name: 'VModal',
+    containerName: 'VDynamicModals'
+  }
+  ```
+- 回傳：`PluginObject`
+- 範例：
+### Vue 2
 
 ```js[main.js]
-import VueFinalModal from 'vue-final-modal'
+import { vfmPlugin } from 'vue-final-modal'
 
-Vue.use(VueFinalModal())
+Vue.use(vfmPlugin)
 ```
 
 ### Nuxt
@@ -61,9 +106,9 @@ Vue.use(VueFinalModal())
 - 新增一個 plugin **`vue-final-modal.js`**
 
 ```js[plugins/vue-final-modal.js]
-import VueFinalModal from 'vue-final-modal/lib'
+import { vfmPlugin } from 'vue-final-modal/lib'
 
-Vue.use(VueFinalModal())
+Vue.use(vfmPlugin)
 ```
 
 - **在 `nuxt.config.js` 的 plugin 與 build 中加入**
@@ -77,7 +122,7 @@ export default {
 }
 ```
 
-### CDN
+## CDN
 
 <alert>[Live demo](https://codepen.io/hunterliu1003/pen/ZEWoYeE)</alert>
 

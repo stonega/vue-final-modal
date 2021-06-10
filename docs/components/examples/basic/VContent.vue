@@ -1,11 +1,11 @@
 <template>
   <div>
-    <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+    <v-modal v-model="showModal" classes="modal-container" content-class="modal-content">
       <span class="modal__title">Hello, vue-final-modal</span>
       <div class="modal__content">
         <p>Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.</p>
       </div>
-    </vue-final-modal>
+    </v-modal>
     <v-button highlight @click="showModal = true">Open modal</v-button>
   </div>
 </template>

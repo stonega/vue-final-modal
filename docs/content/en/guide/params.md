@@ -7,7 +7,7 @@ fullscreen: true
 version: 2
 ---
 
-When you open a modal though the [API](/api) `$vfm.show(name, params)`.
+When you open a modal though the [API](/api) `$modal.show(name, params)`.
 
 ## You have two ways to get `params`:
 
@@ -22,9 +22,9 @@ When you open a modal though the [API](/api) `$vfm.show(name, params)`.
 ### On `@beforeOpen` event
 
 ```html
-<vue-final-modal @beforeOpen="event => event.ref.params">
+<v-modal @beforeOpen="event => event.ref.params">
   <!-- modal content -->
-</vue-final-modal>
+</v-modal>
 ```
 
 <alert>`params` will be reset to `{}` automatically after [`closed`](/guide/events#closed) event. You can avoid the modal to reset the `params` to empty object by calling `event.stop()`.</alert>

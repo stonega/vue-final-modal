@@ -20,7 +20,7 @@ You can create a `higher-order component` easily and can customize `template`, `
 
 ```vue
 <template>
-  <vue-final-modal
+  <v-modal
     v-slot="{ params, close }"
     v-bind="$attrs"
     classes="flex justify-center items-center"
@@ -40,7 +40,7 @@ You can create a `higher-order component` easily and can customize `template`, `
     <button class="absolute top-0 right-0 mt-2 mr-2" @click="close">
       <mdi-close></mdi-close>
     </button>
-  </vue-final-modal>
+  </v-modal>
 </template>
 ```
 

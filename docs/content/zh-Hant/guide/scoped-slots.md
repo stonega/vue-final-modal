@@ -15,10 +15,10 @@ version: 2
 
 ```vue
 <template>
-  <vue-final-modal v-slot="{ close }" v-bind="$attrs" v-on="$listeners">
+  <v-modal v-slot="{ close }" v-bind="$attrs" v-on="$listeners">
     <div>哈囉，Vue Final Modal</div>
     <button @click="close">close modal</button>
-  </vue-final-modal>
+  </v-modal>
 </template>
 
 <script>
@@ -34,7 +34,7 @@ export default {
 - 型別： `Any`
 - 預設： `{}`
 
-當你透過 [API](/zh-Hant/api) `$vfm.show(name, params)` 開啟 modal，你可以使用 scoped-slot 取得 params：
+當你透過 [API](/zh-Hant/api) `$modal.show(name, params)` 開啟 modal，你可以使用 scoped-slot 取得 params：
 
 ```html
 <template v-slot="{ params }">

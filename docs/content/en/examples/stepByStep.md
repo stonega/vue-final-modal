@@ -16,9 +16,9 @@ version: 2
   ```vue
   <template>
     <div>
-      <vue-final-modal v-model="showModal">
+      <v-modal v-model="showModal">
         Modal Content Here
-      </vue-final-modal>
+      </v-modal>
       <button @click="showModal = true">Open Modal</button>
     </div>
   </template>
@@ -37,15 +37,15 @@ version: 2
 
 - **Open modal with the [API](/api)**
 
-  <alert>`v-model` is necessary when you open a modal with `$vfm.show(name)` API.</alert>
+  <alert>`v-model` is necessary when you open a modal with `$modal.show(name)` API.</alert>
 
   <sfc-view>
 
   ```vue
   <template>
-    <vue-final-modal v-model="showModal" name="example">
+    <v-modal v-model="showModal" name="example">
         Modal Content Here
-    </vue-final-modal>
+    </v-modal>
     <button @click="openModalExample">Open Modal</button>
   </template>
   ```
@@ -58,7 +58,7 @@ version: 2
     }),
     methods: {
       openModalExample() {
-        this.$vfm.show('example')
+        this.$modal.show('example')
       }
     }
   }
@@ -78,9 +78,9 @@ version: 2
   ```vue
   <template>
     <div>
-      <vue-final-modal v-model="showModal">
+      <v-modal v-model="showModal">
         <span class="modal__title">Hello, vue-final-modal</span>
-      </vue-final-modal>
+      </v-modal>
       <v-button @click="showModal = true">Open modal</v-button>
     </div>
   </template>
@@ -116,9 +116,9 @@ version: 2
   ```vue
   <template>
     <div>
-      <vue-final-modal v-model="showModal" content-class="modal-content">
+      <v-modal v-model="showModal" content-class="modal-content">
         <span class="modal__title">Hello, vue-final-modal</span>
-      </vue-final-modal>
+      </v-modal>
       <v-button @click="showModal = true">Open modal</v-button>
     </div>
   </template>
@@ -168,9 +168,9 @@ version: 2
   ```vue
   <template>
     <div>
-      <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+      <v-modal v-model="showModal" classes="modal-container" content-class="modal-content">
         <span class="modal__title">Hello, vue-final-modal</span>
-      </vue-final-modal>
+      </v-modal>
       <v-button @click="showModal = true">Open modal</v-button>
     </div>
   </template>
@@ -227,12 +227,12 @@ version: 2
   ```vue
   <template>
     <div>
-      <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+      <v-modal v-model="showModal" classes="modal-container" content-class="modal-content">
         <span class="modal__title">Hello, vue-final-modal</span>
         <div class="modal__content">
           <p>Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.</p>
         </div>
-      </vue-final-modal>
+      </v-modal>
       <v-button @click="showModal = true">Open modal</v-button>
     </div>
   </template>
@@ -289,7 +289,7 @@ version: 2
   ```vue
   <template>
     <div>
-      <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+      <v-modal v-model="showModal" classes="modal-container" content-class="modal-content">
         <button class="modal__close" @click="showModal = false">
           <mdi-close></mdi-close>
         </button>
@@ -297,7 +297,7 @@ version: 2
         <div class="modal__content">
           <p>Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.</p>
         </div>
-      </vue-final-modal>
+      </v-modal>
       <v-button @click="showModal = true">Open modal</v-button>
     </div>
   </template>
@@ -361,7 +361,7 @@ version: 2
   ```vue
   <template>
     <div>
-      <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+      <v-modal v-model="showModal" classes="modal-container" content-class="modal-content">
         <button class="modal__close" @click="showModal = false">
           <mdi-close></mdi-close>
         </button>
@@ -371,7 +371,7 @@ version: 2
             Vue Final Modal is a renderless, stackable, detachable and lightweight modal component.
           </p>
         </div>
-      </vue-final-modal>
+      </v-modal>
       <v-button @click="showModal = true">Open modal</v-button>
     </div>
   </template>
@@ -440,7 +440,7 @@ version: 2
   ```vue
   <template>
     <div>
-      <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+      <v-modal v-model="showModal" classes="modal-container" content-class="modal-content">
         <button class="modal__close" @click="showModal = false">
           <mdi-close></mdi-close>
         </button>
@@ -454,7 +454,7 @@ version: 2
           <v-button @click="showModal = false">confirm</v-button>
           <v-button @click="showModal = false">cancel</v-button>
         </div>
-      </vue-final-modal>
+      </v-modal>
       <v-button @click="showModal = true">Open modal</v-button>
     </div>
   </template>
@@ -531,7 +531,7 @@ version: 2
   <template>
     <div>
       <!-- First modal -->
-      <vue-final-modal v-model="showModal" classes="modal-container" content-class="modal-content">
+      <v-modal v-model="showModal" classes="modal-container" content-class="modal-content">
         <button class="modal__close" @click="showModal = false">
           <mdi-close></mdi-close>
         </button>
@@ -545,10 +545,10 @@ version: 2
           <v-button highlight @click="showConfirmModal = true">confirm</v-button>
           <v-button @click="showModal = false">cancel</v-button>
         </div>
-      </vue-final-modal>
+      </v-modal>
 
       <!-- Second modal -->
-      <vue-final-modal v-model="showConfirmModal" classes="modal-container" content-class="modal-content">
+      <v-modal v-model="showConfirmModal" classes="modal-container" content-class="modal-content">
         <button class="modal__close" @click="showConfirmModal = false">
           <mdi-close></mdi-close>
         </button>
@@ -558,7 +558,7 @@ version: 2
           <v-button @click="confirm">confirm</v-button>
           <v-button @click="showConfirmModal = false">cancel</v-button>
         </div>
-      </vue-final-modal>
+      </v-modal>
 
       <v-button @click="showModal = true">Open modal</v-button>
     </div>
@@ -641,9 +641,9 @@ version: 2
 
   ```vue
   <template>
-    <vue-final-modal ... focus-trap>
+    <v-modal ... focus-trap>
       ...modal content
-    </vue-final-modal>
+    </v-modal>
   </template>
   ```
 

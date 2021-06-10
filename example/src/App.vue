@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="p-4">
     <h2 class="text-3xl py-2">Options:</h2>
-    <BasicOptions />
+    <basic-options />
 
     <h2 class="text-3xl py-2">v-basic:</h2>
     <v-basic></v-basic>
@@ -32,7 +32,8 @@
     <h2 class="text-3xl py-2">Tailwind HOC Custom Transition Modal</h2>
     <hoc-example-tailwind-custom-transition></hoc-example-tailwind-custom-transition>
 
-    <modals-container></modals-container>
+    <v-dynamic-modals></v-dynamic-modals>
+
     <div v-for="i in 100" :key="i">{{ i }}</div>
   </div>
 </template>
