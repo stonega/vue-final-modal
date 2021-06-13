@@ -16,7 +16,7 @@
     "vetur"
   ],
   "scripts": {
-    "prebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install",
+    "prebuild": "[[ $CI = true ]] && npx pnpm install --store=node_modules/.pnpm-store || echo skipping pnpm install",
     "build": "rollup -C --environment BUILD:production",
     "dev": "rollup -C -w --environment BUILD:production",
     "dev:example": "cd example && pnpm dev",
