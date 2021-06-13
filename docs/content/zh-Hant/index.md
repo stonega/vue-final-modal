@@ -75,21 +75,21 @@ version: 2
 git clone https://github.com/vue-final/vue-final-modal.git
 
 # Run linter
-yarn lint
+pnpm lint
 
 # Build library
-yarn
-yarn build
+pnpm
+pnpm build
 
 # Run examples
 cd examples
-yarn
-yarn dev
+pnpm
+pnpm dev
 
 # Run docs
 cd docs
-yarn
-yarn dev
+pnpm
+pnpm dev
 ```
 
 ## **貢獻**

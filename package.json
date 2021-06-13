@@ -16,10 +16,11 @@
     "vetur"
   ],
   "scripts": {
-    "build": "rollup -c --environment BUILD:production",
-    "dev": "rollup -c -w --environment BUILD:production",
-    "dev:example": "yarn --cwd example dev",
-    "dev:docs": "yarn --cwd docs dev",
+    "prebuild": "test \"$CI\" = true && npx pnpm install -r --store=node_modules/.pnpm-store || echo skipping pnpm install",
+    "build": "rollup -C --environment BUILD:production",
+    "dev": "rollup -C -w --environment BUILD:production",
+    "dev:example": "cd example && pnpm dev",
+    "dev:docs": "cd docs && pnpm dev",
     "test": "jest",
     "lint": "eslint -c .eslintrc.js --fix --ext .js,.vue docs example lib tests",
     "coveralls": "jest && cat ./coverage/lcov.info | coveralls"
@@ -56,7 +57,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,vue}": [
-      "yarn lint"
+      "pnpm lint"
     ]
   },
   "repository": {

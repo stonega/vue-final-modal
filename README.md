@@ -51,24 +51,24 @@ You can create a [higher-order component](https://vue-final-modal.org/examples/r
 git clone https://github.com/vue-final/vue-final-modal.git
 
 # Run linter
-yarn lint
+pnpm lint
 
 # Run unit test
-yarn test
+pnpm test
 
 # Build library
-yarn
-yarn build
+pnpm
+pnpm build
 
 # Run examples
 cd examples
-yarn
-yarn dev
+pnpm
+pnpm dev
 
 # Run docs
 cd docs
-yarn
-yarn dev
+pnpm
+pnpm dev
 ```
 
 ## **Contribution**
