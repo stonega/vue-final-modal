@@ -80,7 +80,7 @@ import {
   trimPx,
   validDragElement,
   addListener,
-  removeListener
+  removeListener,
 } from './utils/dragResize.js'
 import { disableBodyScroll, enableBodyScroll } from './utils/bodyScrollLock'
 
@@ -90,7 +90,7 @@ const TransitionState = {
   Enter: 'enter',
   Entering: 'entering',
   Leave: 'leave',
-  Leaving: 'leavng'
+  Leaving: 'leavng',
 }
 
 function validateAttachTarget(val) {
@@ -103,12 +103,12 @@ function validateAttachTarget(val) {
 
 const CLASS_PROP = {
   type: [String, Object, Array],
-  default: ''
+  default: '',
 }
 
 const STYLE_PROP = {
   type: [Object, Array],
-  default: () => ({})
+  default: () => ({}),
 }
 
 const resizeCursor = {
@@ -119,7 +119,7 @@ const resizeCursor = {
   b: 'ns-resize',
   bl: 'nesw-resize',
   l: 'ew-resize',
-  tl: 'nwse-resize'
+  tl: 'nwse-resize',
 }
 
 export default {
@@ -152,18 +152,18 @@ export default {
     keepChangedStyle: { type: Boolean, default: false },
     resize: {
       type: Boolean,
-      default: false
+      default: false,
     },
     resizeDirections: {
       type: Array,
       default: () => ['t', 'tr', 'r', 'br', 'b', 'bl', 'l', 'tl'],
       validator: val =>
-        ['t', 'tr', 'r', 'br', 'b', 'bl', 'l', 'tl'].filter(value => val.indexOf(value) !== -1).length === val.length
+        ['t', 'tr', 'r', 'br', 'b', 'bl', 'l', 'tl'].filter(value => val.indexOf(value) !== -1).length === val.length,
     },
     minWidth: { type: Number, default: 0 },
     minHeight: { type: Number, default: 0 },
     maxWidth: { type: Number, default: Infinity },
-    maxHeight: { type: Number, default: Infinity }
+    maxHeight: { type: Number, default: Infinity },
   },
   data: () => ({
     modalStackIndex: null,
@@ -171,7 +171,7 @@ export default {
     visibility: {
       modal: false,
       overlay: false,
-      resize: false
+      resize: false,
     },
     overlayTransitionState: null,
     modalTransitionState: null,
@@ -181,7 +181,7 @@ export default {
     resolveToggle: noop,
     rejectToggle: noop,
     state: null,
-    lastMousedownEl: null
+    lastMousedownEl: null,
   }),
   computed: {
     isComponentReadyToBeDestroyed() {
@@ -203,7 +203,7 @@ export default {
     },
     bindStyle() {
       return {
-        ...(this.calculateZIndex !== false && { zIndex: this.calculateZIndex })
+        ...(this.calculateZIndex !== false && { zIndex: this.calculateZIndex }),
       }
     },
     bindContentStyle() {
@@ -218,7 +218,7 @@ export default {
     computedOverlayTransition() {
       if (typeof this.overlayTransition === 'string') return { name: this.overlayTransition }
       return { ...this.overlayTransition }
-    }
+    },
   },
   watch: {
     value(value) {
@@ -261,7 +261,7 @@ export default {
       if (!value) {
         this.dragResizeStyle = {}
       }
-    }
+    },
   },
   created() {
     this.api.modals.push(this)
@@ -351,10 +351,28 @@ export default {
         this.$nextTick(() => {
           if (this.lockScroll) {
             disableBodyScroll(this.$refs.vfmContainer, {
-              reserveScrollBarGap: true
+              reserveScrollBarGap: true,
+              allowTouchMove: el => {
+                while (el && el !== document.body) {
+                  if (el.getAttribute('body-scroll-lock-ignore') !== null) {
+                    return true
+                  }
+
+                  el = el.parentElement
+                }
+              },
             })
           } else {
-            enableBodyScroll(this.$refs.vfmContainer)
+            enableBodyScroll(this.$refs.vfmContainer, {
+              allowTouchMove: el => {
+                while (el && el !== document.body) {
+                  if (el.getAttribute('body-scroll-lock-ignore') !== null) {
+                    return true
+                  }
+                  el = el.parentElement
+                }
+              },
+            })
           }
         })
       }
@@ -423,7 +441,7 @@ export default {
         type: 'closed',
         stop() {
           stopEvent = true
-        }
+        },
       })
       this.$emit('closed', event)
       this.resolveToggle('hide')
@@ -449,7 +467,7 @@ export default {
     createModalEvent(eventProps = {}) {
       return {
         ref: this,
-        ...eventProps
+        ...eventProps,
       }
     },
     emitEvent(eventType, value) {
@@ -458,7 +476,7 @@ export default {
         type: eventType,
         stop() {
           stopEvent = true
-        }
+        },
       })
       this.$emit(eventType, event)
       if (stopEvent) {
@@ -510,7 +528,7 @@ export default {
       const isAbsolute = window.getComputedStyle(vfmContent).position === 'absolute'
       const position = {
         top: trimPx(this.dragResizeStyle.top),
-        left: trimPx(this.dragResizeStyle.left)
+        left: trimPx(this.dragResizeStyle.left),
       }
       const limit = (() => {
         if (this.fitParent) {
@@ -520,7 +538,7 @@ export default {
                 minTop: 0,
                 minLeft: 0,
                 maxTop: rectContainer.height - rectContent.height,
-                maxLeft: rectContainer.width - rectContent.width
+                maxLeft: rectContainer.width - rectContent.width,
               }
             },
             relative() {
@@ -528,9 +546,9 @@ export default {
                 minTop: position.top + rectContainer.top - rectContent.top,
                 minLeft: position.left + rectContainer.left - rectContent.left,
                 maxTop: position.top + rectContainer.bottom - rectContent.bottom,
-                maxLeft: position.left + rectContainer.right - rectContent.right
+                maxLeft: position.left + rectContainer.right - rectContent.right,
               }
-            }
+            },
           }
           return isAbsolute ? limit.absolute() : limit.relative()
         } else {
@@ -546,7 +564,7 @@ export default {
         const move = getPosition(e)
         let offset = {
           x: move.x - down.x,
-          y: move.y - down.y
+          y: move.y - down.y,
         }
         if (state === STATE_RESIZE) {
           offset = this.getResizeOffset(direction, offset, rectContainer, rectContent, isAbsolute)
@@ -575,15 +593,15 @@ export default {
             position: 'absolute',
             transform: 'unset',
             width: rectContent.width + 'px',
-            height: rectContent.height + 'px'
+            height: rectContent.height + 'px',
           }),
           ...(offset.width && { width: offset.width + 'px' }),
-          ...(offset.height && { height: offset.height + 'px' })
+          ...(offset.height && { height: offset.height + 'px' }),
         }
 
         this.dragResizeStyle = {
           ...this.dragResizeStyle,
-          ...style
+          ...style,
         }
       }
       const end = e => {
@@ -627,7 +645,7 @@ export default {
         offsetAxis = dir.getOffsetAxis(edge, isAbsolute)
         return {
           [dir.edgeName]: edge,
-          [dir.axis]: offsetAxis
+          [dir.axis]: offsetAxis,
         }
       }
 
@@ -650,7 +668,7 @@ export default {
             } else {
               return ((isPositive ? 1 : -1) * offsetAxis) / 2
             }
-          }
+          },
         }
       }
 
@@ -658,7 +676,7 @@ export default {
         t: ['top', 'height', 'y', true],
         b: ['bottom', 'height', 'y', false],
         l: ['left', 'width', 'x', true],
-        r: ['right', 'width', 'x', false]
+        r: ['right', 'width', 'x', false],
       }
 
       let _offset = { x: 0, y: 0 }
@@ -666,12 +684,12 @@ export default {
         const directionInfo = getDirectionInfo(...directions[dir])
         _offset = {
           ..._offset,
-          ...setOffset(directionInfo)
+          ...setOffset(directionInfo),
         }
       })
       return _offset
-    }
-  }
+    },
+  },
 }
 </script>
 
